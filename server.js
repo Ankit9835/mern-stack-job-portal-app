@@ -16,6 +16,7 @@ import path from 'path';
 import helmet from 'helmet';
 import xss from 'xss-clean';
 import mongoSanitize from 'express-mongo-sanitize';
+import cookieParser from 'cookie-parser';
 
 
 if (process.env.NODE_ENV !== 'production') {
@@ -26,7 +27,7 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 app.use(express.static(path.resolve(__dirname, './client/build')));
 
 app.use(express.json())
-
+app.use(cookieParser());
 app.use(helmet());
 app.use(xss());
 app.use(mongoSanitize());
